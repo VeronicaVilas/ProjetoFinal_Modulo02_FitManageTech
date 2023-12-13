@@ -29,8 +29,9 @@ class UserController extends Controller
 
             $user = User::create($data);
             $plan = Plan::find($user->plan_id);
+            $email = $user->email;
 
-            Mail::to('veronica_v_santos@estudante.sesisenai.org.br')
+            Mail::to($email)
             ->send(new SendWelcomeEmailToUser($user, $plan));
 
             return $user;
