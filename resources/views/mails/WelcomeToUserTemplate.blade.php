@@ -39,6 +39,12 @@
             font-size: 16px;
             color: black
         }
+
+        .upgrade {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #555;
+        }
     </style>
 </head>
 <body>
@@ -51,10 +57,12 @@
     <ul>
         <li class="user-information"><strong>Email:</strong> {{$user->email}}</li>
         <li class="user-information"><strong>Plano:</strong> {{$plan->description}}</li>
-        <li class="user-information"><strong>Limite de cadastro:</strong> {{$plan->limit}}</li>
+        <li class="user-information"><strong>Limite de cadastro:</strong> {{$plan->limit > 0 ? $plan->limit : 'ILIMITADO'}}</li>
     </ul>
 
-    <p class="additional-information">Fique à vontade para explorar todas as funcionalidades do nosso sistema! Caso deseje, você pode realizar o upgrade do seu pacote sem taxas adicionais, lembrando que os cadastros no pacote ouro é ilimitado e, se tiver alguma dúvida, entre em contato conosco.</p>
+    <p class="additional-information">Fique à vontade para explorar todas as funcionalidades do nosso sistema e, se tiver alguma dúvida, entre em contato conosco.</p>
+
+    <p class="upgrade">🚨Você ainda não é cliente ouro? Venha fazer um upgrade do seu pacote de acesso, e o melhor é que não possui taxas adicionais. Caso queria mais detalhes entre em contato conosco.</p>
 
     <p class="additional-information">Agradecemos por escolher nosso serviço e desejamos a você muito sucesso em suas atividades como instrutor!</p>
 
