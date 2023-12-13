@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Traits\HttpResponses;
+use App\Mail\SendWelcomeEmailToUser;
+use App\Models\Plan;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -21,9 +24,14 @@ class UserController extends Controller
                 'date_birth' => 'date_format:Y-m-d|required',
                 'cpf' => 'string|required|max:14|unique:users',
                 'password' => 'string|required|min:8|max:32',
+                'plan_id' => 'exists:plans,id',
             ]);
 
             $user = User::create($data);
+            $plan = Plan::find($user->plan_id);
+
+            Mail::to('veronica_v_santos@estudante.sesisenai.org.br')
+            ->send(new SendWelcomeEmailToUser($user, $plan));
 
             return $user;
 
