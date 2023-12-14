@@ -40,4 +40,10 @@ class AuthController extends Controller
             return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);
         }
     }
+
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return $this->response('', Response::HTTP_NO_CONTENT);
+    }
 }
