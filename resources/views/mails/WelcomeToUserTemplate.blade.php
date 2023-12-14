@@ -48,7 +48,7 @@
     </style>
 </head>
 <body>
-    <img src="{{ $message->embed(public_path('logo.png'))}}" width="300px"/>
+    <img src="{{ $message->embed(public_path('logo.png'))}}" width="800px"/>
     <h2 class="title">💪 Bem-Vindo à Nossa Academia {{$user->name}}! 💪</h2>
 
     <p class="additional-information">Seja bem-vindo à família TrainSys - O seu novo destino para uma jornada fitness extraordinária! Estamos empolgados em tê-lo(a) a bordo e ansiosos para ajudá-lo(a) a atingir seus objetivos de saúde e bem-estar.</p>
