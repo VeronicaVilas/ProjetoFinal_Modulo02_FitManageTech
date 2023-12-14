@@ -27,4 +27,10 @@ trait HttpResponses
       'data' => $data
     ], $status);
   }
+
+  public function responseData($data)
+    {
+        return response()->json([$data]);
+    }
+
 }
