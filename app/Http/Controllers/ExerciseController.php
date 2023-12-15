@@ -22,12 +22,12 @@ class ExerciseController extends Controller
 
             $data['user_id'] = Auth::id();
 
-            $existingExercise = Exercise::query()
+            $checkExerciseExists = Exercise::query()
                 ->where('description', $data['description'])
                 ->where('user_id', $data['user_id'])
                 ->first();
 
-            if ($existingExercise) {
+            if ($checkExerciseExists) {
                 return $this->error('Este exercício já foi cadastrado!', Response::HTTP_CONFLICT);
             }
 
