@@ -7,6 +7,7 @@ use App\Models\Exercise;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class ExerciseController extends Controller
 {
@@ -19,7 +20,12 @@ class ExerciseController extends Controller
 
             $data = $request->all();
 
-            $existingExercise = Exercise::where('description', $data['description'])->first();
+            $data['user_id'] = Auth::id();
+
+            $existingExercise = Exercise::query()
+                ->where('description', $data['description'])
+                ->where('user_id', $data['user_id'])
+                ->first();
 
             if ($existingExercise) {
                 return $this->error('Este exercício já foi cadastrado!', Response::HTTP_CONFLICT);
