@@ -39,4 +39,12 @@ class ExerciseController extends Controller
             return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);
         }
     }
+
+    public function index() {
+        $user_id = Auth::id();
+
+        $exercises = Exercise::query()->where('user_id', $user_id)->get();
+
+        return $exercises;
+    }
 }
