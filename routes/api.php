@@ -9,6 +9,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 
     Route::post('exercises', [ExerciseController::class, 'store']);
+    Route::get('exercises', [ExerciseController::class, 'index']);
 });
 
 Route::post('users', [UserController::class, 'store']);
