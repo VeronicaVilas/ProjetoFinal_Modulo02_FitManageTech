@@ -14,6 +14,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('exercises', [ExerciseController::class, 'index']);
 
     Route::post('students', [StudentController::class, 'store'])->middleware(CheckStudentPlanLimitToUser::class);
+    Route::get('students', [StudentController::class, 'index']);
 });
 
 Route::post('users', [UserController::class, 'store']);
