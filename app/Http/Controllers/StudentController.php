@@ -60,5 +60,23 @@ class StudentController extends Controller
 
         return $students;
     }
+
+    public function destroy($id)
+    {
+        $userId = Auth::id();
+        $student = Student::query()->where('user_id', $userId)->find($id);
+
+        if (!$student) {
+            return $this->error('Estudante não encontrado!', Response::HTTP_NOT_FOUND);
+        }
+
+        if ($student->user_id !== $userId) {
+            return $this->error('Você não tem permissão para excluir este estudante!', Response::HTTP_FORBIDDEN);
+        }
+
+        $student->delete();
+
+        return $this->response('', Response::HTTP_NO_CONTENT);
+    }
 }
 
