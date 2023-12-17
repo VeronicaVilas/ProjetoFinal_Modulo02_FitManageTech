@@ -78,5 +78,39 @@ class StudentController extends Controller
 
         return $this->response('', Response::HTTP_NO_CONTENT);
     }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $userId = Auth::id();
+
+            $student = Student::query()->where('user_id', $userId)->find($id);
+
+            if (!$student) {
+                return $this->error('Estudante não encontrado!', Response::HTTP_NOT_FOUND);
+            }
+
+            $request->validate([
+                'name' => 'string|max:255',
+                'email' => 'string|email|max:255|unique:students',
+                'date_birth' => 'date_format:Y-m-d',
+                'cpf' => 'string|max:14|unique:students',
+                'contact' => 'string|required|max:20|unique:students',
+                'cep' => 'string',
+                'street' => 'string',
+                'state' => 'string',
+                'neighborhood' => 'string',
+                'city' => 'string',
+                'number' => 'string',
+            ]);
+
+            $student->update($request->all());
+
+            return $this->response('Estudante atualizado com sucesso!', Response::HTTP_OK);
+
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);
+        }
+    }
 }
 
