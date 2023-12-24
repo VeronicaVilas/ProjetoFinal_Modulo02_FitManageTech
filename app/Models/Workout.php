@@ -25,5 +25,12 @@ class Workout extends Model
     [
         'created_at',
         'updated_at',
+        'student_id',
+        'day',
     ];
+
+    public function exercise()
+    {
+        return $this->belongsTo(Exercise::class, 'exercise_id');
+    }
 }

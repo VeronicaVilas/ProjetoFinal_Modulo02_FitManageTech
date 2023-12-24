@@ -19,7 +19,7 @@ class WorkoutController extends Controller
                 'repetitions' => 'integer|required',
                 'weight' => 'numeric|required',
                 'break_time' => 'integer|required',
-                'day' => 'string|required|in:SEGUNDA,TERÇA,QUARTA,QUINTA, SEXTA, SÁBADO, DOMINGO',
+                'day' => 'string|required|in:SEGUNDA, TERÇA, QUARTA, QUINTA, SEXTA, SÁBADO, DOMINGO',
                 'observations' => 'string',
                 'time' => 'integer|required',
             ]);
