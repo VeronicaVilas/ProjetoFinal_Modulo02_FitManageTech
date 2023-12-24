@@ -112,5 +112,38 @@ class StudentController extends Controller
             return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);
         }
     }
+
+    public function show($id)
+    {
+        try {
+            $student = Student::find($id);
+
+            if (!$student) {
+                return $this->error('Estudante não encontrado!', Response::HTTP_NOT_FOUND);
+            }
+
+            $response = [
+                'id' => $student->id,
+                'name' => $student->name,
+                'email' => $student->email,
+                'date_birth' => $student->date_birth,
+                'cpf' => $student->cpf,
+                'contact' => $student->contact,
+                'address' => [
+                    'cep' => $student->cep,
+                    'street' => $student->street,
+                    'state' => $student->state,
+                    'neighborhood' => $student->neighborhood,
+                    'city' => $student->city,
+                    'number' => $student->number,
+                ],
+            ];
+
+            return $response;
+
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);
+        }
+    }
 }
 
