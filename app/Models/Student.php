@@ -34,4 +34,9 @@ class Student extends Model
         'updated_at',
         'user_id'
     ];
+
+    public function workouts()
+    {
+        return $this->hasMany(Workout::class);
+    }
 }
