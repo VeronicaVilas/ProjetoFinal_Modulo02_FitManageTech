@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ExerciseController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentExportController;
 use App\Http\Controllers\StudentWorkoutController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WorkoutController;
@@ -24,6 +25,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('workouts', [WorkoutController::class, 'store']);
 
     Route::get('students/{id}/workouts', [StudentWorkoutController::class, 'index']);
+
+    Route::get('students/export', [StudentExportController::class, 'export']);
 });
 
 Route::post('users', [UserController::class, 'store']);
