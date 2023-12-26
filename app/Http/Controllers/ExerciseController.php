@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Exercise;
+use App\Http\Controllers\Controller;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,8 +43,37 @@ class ExerciseController extends Controller
     public function index() {
         $user_id = Auth::id();
 
-        $exercises = Exercise::query()->where('user_id', $user_id)->get();
+        $exercise = Exercise::query()->where('user_id', $user_id)->get();
 
-        return $exercises;
+        return $exercise;
+    }
+
+    public function destroy($id)
+    {
+        try {
+
+            $exercise = Exercise::find($id);
+
+            if (!$exercise) {
+                return $this->error('Exercício não encontrado!', Response::HTTP_NOT_FOUND);
+            }
+
+            $userId = Auth::id();
+
+            if ($exercise->user_id !== $userId) {
+                return $this->error('Você não tem permissão para excluir este exercício.', Response::HTTP_FORBIDDEN);
+            }
+
+            if ($exercise->workouts()->exists()) {
+                return $this->error('Não é permitido excluir o exercício pois existem treinos vinculados.', Response::HTTP_CONFLICT);
+            }
+
+            $exercise->delete();
+
+            return $this->response('',Response::HTTP_NO_CONTENT);
+
+        } catch (\Exception $exception) {
+            return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);
+        }
     }
 }
