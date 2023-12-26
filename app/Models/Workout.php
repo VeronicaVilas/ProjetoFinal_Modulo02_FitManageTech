@@ -33,4 +33,9 @@ class Workout extends Model
     {
         return $this->belongsTo(Exercise::class, 'exercise_id');
     }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class, 'student_id');
+    }
 }
