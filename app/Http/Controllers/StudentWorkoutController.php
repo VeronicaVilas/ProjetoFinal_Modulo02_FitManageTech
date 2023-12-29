@@ -8,13 +8,20 @@ use App\Models\Exercise;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
+
 
 class StudentWorkoutController extends Controller
 {
     public function index($studentId)
     {
         try {
-            $student = Student::find($studentId);
+            $userId = Auth::id();
+            $student = Student::where('user_id', $userId)->find($studentId);
+
+            if (!$student) {
+                return $this->error('Estudante não encontrado ou não pertence ao usuário logado.', Response::HTTP_NOT_FOUND);
+            }
 
             $workouts = Workout::query()
                 ->where('student_id', $studentId)

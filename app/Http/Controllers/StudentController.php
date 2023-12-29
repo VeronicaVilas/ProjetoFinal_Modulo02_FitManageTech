@@ -121,7 +121,8 @@ class StudentController extends Controller
     public function show($id)
     {
         try {
-            $student = Student::find($id);
+            $userId = Auth::id();
+            $student = Student::where('user_id', $userId)->find($id);
 
             if (!$student) {
                 return $this->error('Estudante não encontrado!', Response::HTTP_NOT_FOUND);
