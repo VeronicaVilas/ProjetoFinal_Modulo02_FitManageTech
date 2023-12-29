@@ -30,7 +30,15 @@ class StudentWorkoutController extends Controller
             $response = [
                 'student_id' => $student->id,
                 'student_name' => $student->name,
-                'workouts' => $groupedWorkouts,
+                'workouts' => [
+                    'SEGUNDA' => $groupedWorkouts->get('SEGUNDA', []),
+                    'TERÇA' => $groupedWorkouts->get('TERÇA', []),
+                    'QUARTA' => $groupedWorkouts->get('QUARTA', []),
+                    'QUINTA' => $groupedWorkouts->get('QUINTA', []),
+                    'SEXTA' => $groupedWorkouts->get('SEXTA', []),
+                    'SÁBADO' => $groupedWorkouts->get('SÁBADO', []),
+                    'DOMINGO' => $groupedWorkouts->get('DOMINGO', []),
+                ],
             ];
 
             return $response;
