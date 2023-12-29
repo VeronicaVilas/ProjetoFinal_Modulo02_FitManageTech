@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exercise;
+use App\Models\Student;
 use App\Models\Workout;
 use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
@@ -19,23 +21,36 @@ class WorkoutController extends Controller
                 'repetitions' => 'integer|required',
                 'weight' => 'numeric|required',
                 'break_time' => 'integer|required',
-                'day' => 'string|required|in:SEGUNDA, TERÇA, QUARTA, QUINTA, SEXTA, SÁBADO, DOMINGO',
+                'day' => 'string|required|in:SEGUNDA,TERÇA,QUARTA,QUINTA,SEXTA,SÁBADO,DOMINGO',
                 'observations' => 'string',
                 'time' => 'integer|required',
             ]);
 
             $data = $request->all();
 
-            $data['user_id'] = Auth::id();
+            $userId = Auth::id();
+            $student = Student::find($data['student_id']);
+
+            if (!$student || $student->user_id !== $userId) {
+                return $this->error('Estudante não encontrado ou não pertence ao usuário logado.', Response::HTTP_NOT_FOUND);
+            }
+
+            $exercise = Exercise::find($data['exercise_id']);
+
+            if (!$exercise || $exercise->user_id !== $userId) {
+                return $this->error('Exercício não encontrado ou não pertence ao usuário logado.', Response::HTTP_NOT_FOUND);
+            }
 
             $checkWorkoutExists = Workout::query()
-            ->where('student_id', $data['student_id'])
-            ->where('day', $data['day'])
-            ->first();
+                ->where('student_id', $data['student_id'])
+                ->where('day', $data['day'])
+                ->first();
 
             if ($checkWorkoutExists) {
                 return $this->error('O Treino já foi cadastrado para este dia!', Response::HTTP_CONFLICT);
             }
+
+            $data['user_id'] = $userId;
 
             $workout = Workout::create($data);
 
