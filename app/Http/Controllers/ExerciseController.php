@@ -41,9 +41,9 @@ class ExerciseController extends Controller
     }
 
     public function index() {
-        $user_id = Auth::id();
+        $userId = Auth::id();
 
-        $exercise = Exercise::query()->where('user_id', $user_id)->get();
+        $exercise = Exercise::query()->where('user_id', $userId)->get();
 
         return $exercise;
     }
