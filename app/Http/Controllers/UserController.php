@@ -22,7 +22,7 @@ class UserController extends Controller
                 'name' => 'string|required|max:255',
                 'email' => 'string|required|email|max:255|unique:users',
                 'date_birth' => 'date_format:Y-m-d|required',
-                'cpf' => 'string|required|max:14|unique:users',
+                'cpf' => 'string|required|max:14|regex:/^\d{3}\.\d{3}\.\d{3}-\d{2}$/|unique:users',
                 'password' => 'string|required|min:8|max:32',
                 'plan_id' => 'exists:plans,id',
             ]);
