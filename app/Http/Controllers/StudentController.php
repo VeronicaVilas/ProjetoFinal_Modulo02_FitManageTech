@@ -42,6 +42,7 @@ class StudentController extends Controller
 
     public function index(Request $request)
     {
+
         $userId = Auth::id();
 
         $search = $request->input('search');
@@ -56,9 +57,13 @@ class StudentController extends Controller
             });
         }
 
-        $students = $query->orderBy('name')->get();
+        $student = $query->orderBy('name')->get();
 
-        return $students;
+        if ($student->isEmpty()) {
+            return $this->error('Nenhum estudante não encontrado com essas características!', Response::HTTP_NOT_FOUND);
+        }
+
+        return $student;
     }
 
     public function destroy($id)

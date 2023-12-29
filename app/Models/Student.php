@@ -32,7 +32,8 @@ class Student extends Model
     [
         'created_at',
         'updated_at',
-        'user_id'
+        'user_id',
+        'deleted_at'
     ];
 
     public function workouts()
