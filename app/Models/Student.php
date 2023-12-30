@@ -37,7 +37,7 @@ class Student extends Model
     ];
 
     public function workouts()
-    {
-        return $this->hasMany(Workout::class);
-    }
+{
+    return $this->hasMany(Workout::class, 'student_id', 'id');
+}
 }

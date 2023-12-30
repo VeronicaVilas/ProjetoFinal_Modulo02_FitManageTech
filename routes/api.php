@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
 
+    Route::get('students/export', [StudentExportController::class, 'export']);
+
     Route::get('dashboard', [DashboardController::class, 'index']);
 
     Route::post('exercises', [ExerciseController::class, 'store']);
@@ -29,8 +31,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('workouts', [WorkoutController::class, 'store']);
 
     Route::get('students/{id}/workouts', [StudentWorkoutController::class, 'index']);
-
-    Route::get('students/export', [StudentExportController::class, 'export']);
 });
 
 Route::post('users', [UserController::class, 'store']);

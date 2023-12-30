@@ -15,8 +15,9 @@ class StudentExportController extends Controller
     public function export(Request $request)
     {
         try {
+            $userId = Auth::id();
             $studentId = $request->input('id_do_estudante');
-            $student = Student::find($studentId);
+            $student = Student::query()->where('user_id', $userId)->find($studentId);
 
             if (!$student) {
                 return $this->error('Estudante não encontrado!', Response::HTTP_NOT_FOUND);
@@ -35,11 +36,21 @@ class StudentExportController extends Controller
 
             $name = $student->name;
             $workouts = $groupedWorkouts;
+            $user = Auth::user()->name;
 
             $pdf = PDF::loadView('pdfs.workoutStudent', [
                 'name' => $name,
-                'workouts' => $workouts
-            ]);
+                'user' => $user,
+                'workouts' => [
+                    'SEGUNDA' => $groupedWorkouts->get('SEGUNDA', []),
+                    'TERÇA' => $groupedWorkouts->get('TERÇA', []),
+                    'QUARTA' => $groupedWorkouts->get('QUARTA', []),
+                    'QUINTA' => $groupedWorkouts->get('QUINTA', []),
+                    'SEXTA' => $groupedWorkouts->get('SEXTA', []),
+                    'SÁBADO' => $groupedWorkouts->get('SÁBADO', []),
+                    'DOMINGO' => $groupedWorkouts->get('DOMINGO', []),
+                ],
+            ])->setPaper('landscape');
 
             return $pdf->stream('ficha_de_treinos.pdf');
 
