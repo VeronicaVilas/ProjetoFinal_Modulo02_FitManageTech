@@ -31,10 +31,12 @@ class AuthController extends Controller
             $token = $request->user()->createToken('simple');
             $user = $request->user();
 
-            return $this->responseData ([
+            $responseData = [
                 'token' => $token->plainTextToken,
                 'name' => $user->name,
-            ]);
+            ];
+
+            return  $responseData;
 
         } catch (\Exception $exception) {
             return $this->error($exception->getMessage(), Response::HTTP_BAD_REQUEST);

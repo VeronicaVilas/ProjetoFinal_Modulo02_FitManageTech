@@ -29,9 +29,7 @@ class DashboardController extends Controller
             }
 
             $currentUserPlan = $user->plan->description;
-            $remainingStudents = $user->plan->limit - $registeredStudents;
-
-            $remainingStudents = $currentUserPlan === 'OURO' ? $registeredStudents : ($user->plan->limit - $registeredStudents);
+            $remainingStudents = $currentUserPlan === 'OURO' ? 'ilimitado' : max(0, $user->plan->limit - $registeredStudents);
 
             $response = [
                 'registered_students' => $registeredStudents,

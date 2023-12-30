@@ -29,7 +29,7 @@ class CheckStudentPlanLimitToUser
         $count = Student::where('user_id', $userId)->count();
 
         if ($count >= $limit) {
-            return $this->error('O limite de cadastros de estudantes permitido no plano foi ultrapassado. Caso deseje continuar cadastrando, realize o upgrade de plano e, se tiver alguma dúvida, entre em contato conosco.', Response::HTTP_FORBIDDEN);
+            return $this->error('O limite máximo de alunos cadastrados permitido no plano foi ultrapassado. Caso deseje continuar cadastrando, realize o upgrade de plano e, se tiver alguma dúvida, entre em contato conosco.', Response::HTTP_FORBIDDEN);
         }
 
         return $next($request);

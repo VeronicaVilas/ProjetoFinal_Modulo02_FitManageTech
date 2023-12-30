@@ -20,7 +20,7 @@ class StudentController extends Controller
                 'name' => 'string|required|max:255',
                 'email' => 'string|required|email|max:255|unique:students',
                 'date_birth' => 'date_format:Y-m-d|required',
-                'cpf' => 'string|required|max:14|unique:students',
+                'cpf' => 'string|required|max:14|regex:/^\d{3}\.\d{3}\.\d{3}-\d{2}$/|unique:students',
                 'contact' => 'string|required|max:20|unique:students',
                 'cep' => 'string',
                 'street' => 'string',
@@ -42,6 +42,7 @@ class StudentController extends Controller
 
     public function index(Request $request)
     {
+
         $userId = Auth::id();
 
         $search = $request->input('search');
@@ -56,9 +57,13 @@ class StudentController extends Controller
             });
         }
 
-        $students = $query->orderBy('name')->get();
+        $student = $query->orderBy('name')->get();
 
-        return $students;
+        if ($student->isEmpty()) {
+            return $this->error('Nenhum estudante não encontrado com essas características!', Response::HTTP_NOT_FOUND);
+        }
+
+        return $student;
     }
 
     public function destroy($id)
@@ -94,8 +99,8 @@ class StudentController extends Controller
                 'name' => 'string|max:255',
                 'email' => 'string|email|max:255|unique:students',
                 'date_birth' => 'date_format:Y-m-d',
-                'cpf' => 'string|max:14|unique:students',
-                'contact' => 'string|required|max:20|unique:students',
+                'cpf' => 'string|max:14||regex:/^\d{3}\.\d{3}\.\d{3}-\d{2}$/|unique:students',
+                'contact' => 'string',
                 'cep' => 'string',
                 'street' => 'string',
                 'state' => 'string',
@@ -116,7 +121,8 @@ class StudentController extends Controller
     public function show($id)
     {
         try {
-            $student = Student::find($id);
+            $userId = Auth::id();
+            $student = Student::where('user_id', $userId)->find($id);
 
             if (!$student) {
                 return $this->error('Estudante não encontrado!', Response::HTTP_NOT_FOUND);
