@@ -1,4 +1,6 @@
-![Logo](https://github.com/VeronicaVilas/VeronicaVilas/assets/135287830/f6298274-74d4-4b1d-b275-04e8e9dad810)
+<p align="center">
+  <img src="https://github.com/VeronicaVilas/VeronicaVilas/assets/135287830/f6298274-74d4-4b1d-b275-04e8e9dad810" alt="Logo" style="margin:auto;">
+</p>
 
 # API FitManage Tech
 
