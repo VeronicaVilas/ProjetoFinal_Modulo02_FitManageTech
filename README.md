@@ -1,4 +1,4 @@
-![Imagem do projeto FitManageTech com o logo](<img src="/public/logo.png">)
+![Logo](https://github.com/VeronicaVilas/VeronicaVilas/assets/135287830/f6298274-74d4-4b1d-b275-04e8e9dad810)
 
 # API FitManage Tech
 
@@ -130,7 +130,7 @@ Caso tenha sucesso em enviar a requisição, o usuário receberá um email de bo
 
 👀Modelo do email
 
-![Imagem do projeto FitManageTech com o modelo do email](<img src="/public/Modelo_email.png">)
+![Modelo_email](https://github.com/VeronicaVilas/VeronicaVilas/assets/135287830/89e0abe8-b917-419b-b0d2-6f6435086829)
 ##
 
 #### S02 - Login (Rota Pública)
