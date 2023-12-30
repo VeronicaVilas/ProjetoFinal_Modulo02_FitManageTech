@@ -1,66 +1,529 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+![Imagem do projeto FitManageTech com o logo](<img src="/public/logo.png">)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# API FitManage Tech
 
-## About Laravel
+O Projeto FitManage Tech consiste em uma API para gestão de academia, a qual permite o cadastro de usuário, gestão e listagem de alunos, exercício e rotina por parte dos instrutores.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A FitManage Tech, uma empresa altamente respeitada no ramo de academias, foi a solicitante do projeto front-end [TrainSys](https://github.com/VeronicaVilas/ProjetoTrainSys) e agora manifestou o interesse em dar continuidade ao projeto, solicitando a criação do back-end da aplicação.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Este é um projeto desenvolvido para o curso DEVinHouse ministrado pelo Senai (Serviço Nacional de Aprendizagem Industrial) em parceria com a Zucchetti.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ✔️ Técnicas e tecnologias utilizadas
 
-## Learning Laravel
+Projeto foi desenvolvido utilizando a linguagem laravel e banco de dados PostgreSQL.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### Biblioteca utilizada
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+| Plugin | Uso |
+| ------ | ------ |
+| Dompdf | Permite a geração de documentos PDF a partir de visões (views) no Laravel |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🧰 Técnicas e padrões utilizadas
 
-## Laravel Sponsors
+O projeto foi dividido em uma estruturas de pastas para organização, os quais contém:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+| Local | Uso |
+| ------ | ------ |
+| /src/models | Contém todos modelos da aplicação |
+| /src/controllers | Contém todos os controladores da aplicação |
+| /src/middlewares | Contém os middlewares de validação |
+| /src/database | Contém as migrações e sementes do banco de dados |
+| /routes/api.php  | Define rotas da API para interação com aplicativos ou serviços externos |
+| /resources/views | Contém os arquivos Blade, responsáveis pelas estilizações do email e PDF|
 
-### Premium Partners
+## 🛠️ Criando e executando localmente o projeto
+Criar e executar o FitManage Tech em seu ambiente de desenvolvimento local é muito fácil. Certifique-se de ter o [Git](https://git-scm.com/downloads) e o [Visual Studio Code](https://code.visualstudio.com/) instalados e siga as instruções abaixo.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+1. Clone o código fonte:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+git clone https://github.com/VeronicaVilas/ProjetoFinal_Modulo02_FitManageTech
+```
 
-## Code of Conduct
+2. Instale dependências de desenvolvimento:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer install
+```
 
-## Security Vulnerabilities
+3. Criar um arquivo .env na raiz do projeto com os seguintes parametros:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+DIALECT_DATABASE=''
+HOST_DATABASE=''
+USER_DATABASE=''
+PASSWORD_DATABASE=''
+PORT_DATABASE=''
+PORT_API=''
+NAME_DATABASE=''
 
-## License
+MAIL_MAILER=''
+MAIL_HOST=''
+MAIL_PORT=''
+MAIL_USERNAME=''
+MAIL_PASSWORD=''
+MAIL_ENCRYPTION=''
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+```
+É importante que os parametros estejam corretamentes configurados.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. Instale dependências de desenvolvimento:
+
+```bash
+composer install
+```
+5. Execute a seed para popular o banco de dados:
+
+```bash
+php artisan db:seed PopulatePlans
+```
+
+6. Execute em seguida:
+
+```bash
+php artisan serve
+```
+
+## 🏋🏽 Documentação da API
+
+Para acesso as rotas privadas é necessário, após o login, informar o token para visualizar os dados. 
+
+### 🚥 Endpoints
+
+#### S01 - Cadastro de usuário (Rota Pública)
+
+```http
+  POST /api/users
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id`      | `integer` | **Autoincremental**. Chave primaria |
+| `name` | `string` | **Obrigatório**. Nome do usuário|
+| `email` | `string` | **Obrigatório**. Email do usuário válido|
+| `date_birth` | `date` | **Obrigatório**. Data de nascimento do usuário|
+| `cpf` | `string` | **Obrigatório**. CPF do usuário, único e válido|
+| `password` | `string` | Senha de acesso do usuário|
+| `plan_id` | `integer` | **Obrigatório**. Id do plano selecionado|
+
+
+Request JSON exemplo
+```http
+{
+    "name":"Verônica Vilas",
+    "email":"veronica@gmail.com",
+    "date_birth":"1997-02-21",
+    "cpf":"123.456.789-21",
+    "password":"senha123",
+    "plan_id":3
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `201` | sucesso|
+|  `400` | dados inválidos|
+
+Caso tenha sucesso em enviar a requisição, o usuário receberá um email de boas vindas com o nome, tipo do plano e limite de alunos suportados.
+
+👀Modelo do email
+
+![Imagem do projeto FitManageTech com o modelo do email](<img src="/public/Modelo_email.png">)
+##
+
+#### S02 - Login (Rota Pública)
+
+```http
+  POST /api/login
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `email` | `string` | **Obrigatório**. Email do usuário válido|
+| `password` | `string` | **Obrigatório**. Senha de acesso do usuário.|
+
+
+Request JSON exemplo
+```http
+{
+    "email":"veronica@gmail.com",
+    "password":"senha123"
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `200` | sucesso|
+|  `400` | dados inválidos|
+|  `401` | login inválido|
+
+##
+
+#### S03 - Dashboard (Rota Privada)
+
+```http
+  GET /api/dashboard
+```
+Não é necessario resquest body
+
+Exemplo de resposta:
+```http
+{
+    "registered_students": 0,
+    "registered_exercises": 0,
+    "current_user_plan": "OURO",
+    "remaining_students": "ilimitado"
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `200` | sucesso|
+|  `401` | login inválido|
+|  `404` | não encontrado registro com o código informado|
+
+##
+
+#### S04 - Cadastro de exercícios (Rota Privada)
+
+```http
+  POST /api/exercises
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id`      | `integer` | **Autoincremental**. Chave primaria |
+| `description` | `string` | **Obrigatório**. Nome do exercício|
+| `user_id` | `string` | Id do usuário que cadastrou o exercício|
+
+Exemplo de resposta:
+```http
+{
+    "description": "Supino Reto"
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `201` | sucesso|
+|  `401` | login inválido|
+|  `409` | Cadastro de dados duplicados|
+
+##
+
+#### S05 - Listagem de exercícios (Rota Privada)
+
+```http
+  GET /api/exercises
+```
+Não é necessario resquest body
+
+Exemplo de resposta:
+```http
+{
+    "id": 1,
+    "description": "Supino Reto"
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `200` | sucesso|
+|  `401` | login inválido|
+
+##
+
+#### S06 - Deleção de exercícios (Rota Privada)
+
+```http
+  DELETE /api/exercises/{id}
+```
+Não é necessario resquest body
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id`      | `integer` | **Obrigatório**. número inteiro chave primaria|
+
+Não há response no body em caso de sucesso
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `204` | sucesso|
+|  `409` | Exercício vinculado ao id|
+|  `403` | Dado não criado pelo usuário autenticado|
+|  `404` | não encontrado registro com o código informado|
+
+##
+
+#### S07 - Cadastro de estudantes (Rota Privada)
+
+```http
+  POST /api/students
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id`      | `integer` | **Autoincremental**. Chave primaria |
+| `name` | `string` | **Obrigatório**. Nome do estudante|
+| `email` | `string` | **Obrigatório**. Email do estudante, único e válido|
+| `date_birth` | `date` | **Obrigatório**. Data de nascimento do estudante|
+| `cpf` | `string` | **Obrigatório**. CPF do estudante, único e válido|
+| `contact` | `string` | **Obrigatório**. Telefone do estudante|
+| `user_id` | `integer` | Id do usuário que realizou o cadastro|
+| `city` | `string` | Nome da cidade do estudante|
+| `neighborhood` | `string` | Nome do bairro do estudante|
+| `number` | `string` | Número da casa do estudante|
+| `street` | `string` | Nome da rua do estudante|
+| `state` | `string` | Nome do estado do estudante|
+| `cep` | `string` | CEP do estudante|
+
+
+Exemplo de resposta:
+```http
+{
+    "name": "José Santos",
+    "email": "jose.santos@gmail.com",
+    "date_birth": "1996-04-29",
+    "cpf": "943.355.969-29",
+    "contact": "+55 11 94824-4351",
+    "cep": "12345-678",
+    "street": "Rua das flores",
+    "state": "BA",
+    "neighborhood": "Bairro",
+    "city": "Cidade",
+    "number": "1456"
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `201` | sucesso|
+|  `400` | dados inválido|
+|  `401` | login inválido|
+|  `403` | Atingido o limite de cadastro permitido no plano|
+
+##
+
+#### S08 - Listagem de exercícios (Rota Privada)
+
+```http
+  GET /api/exercises
+```
+Não é necessario resquest body
+
+Exemplo de resposta:
+```http
+{
+    "id": 15,
+    "name": "Jaciara Silva",
+    "email": "jaciara.silva@gmail.com",
+    "date_birth": "1996-04-29",
+    "cpf": "943.355.669-29",
+    "contact": "+55 11 94374-4341",
+    "city": "Cidade",
+    "neighborhood": "Bairro",
+    "number": "1456",
+    "street": "Rua das flores",
+    "state": "BA",
+    "cep": "12345-678"
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `200` | sucesso|
+|  `401` | login inválido|
+
+##
+
+#### S09 - Deleção de estudante (Rota Privada)
+
+```http
+  DELETE /api/students/{id}
+```
+Não é necessario resquest body
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id`      | `integer` | **Obrigatório**. número inteiro chave primaria|
+
+Não há response no body em caso de sucesso
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `204` | sucesso|
+|  `403` | Dado não criado pelo usuário autenticado|
+|  `404` | não encontrado registro com o código informado|
+
+##
+
+#### S10 - Atualização de estudantes (Rota Privada)
+
+```http
+  PUT /api/students/{id}
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `name` | `string` | Nome do estudante|
+| `email` | `string` | Email do estudante, único e válido|
+| `date_birth` | `date` | Data de nascimento do estudante|
+| `cpf` | `string` | CPF do estudante, único e válido|
+| `contact` | `string` | Telefone do estudante|
+| `user_id` | `integer` | Id do usuário que realizou o cadastro|
+| `city` | `string` | Nome da cidade do estudante|
+| `neighborhood` | `string` | Nome do bairro do estudante|
+| `number` | `string` | Número da casa do estudante|
+| `street` | `string` | Nome da rua do estudante|
+| `state` | `string` | Nome do estado do estudante|
+| `cep` | `string` | CEP do estudante|
+
+Não há response no body em caso de sucesso
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `200` | sucesso|
+|  `401` | login inválido|
+|  `404` | não encontrado registro com o código informado|
+
+##
+
+#### S11 - Cadastro de treinos (Rota Privada)
+
+```http
+  POST /api/workouts
+```
+
+| Parâmetro   | Tipo       | Descrição                           |
+| :---------- | :--------- | :---------------------------------- |
+| `id`      | `integer` | **Autoincremental**. Chave primaria |
+| `student_id` | `integer` | **Obrigatório**. Id do estudante|
+| `exercise_id` | `integer` | **Obrigatório**. Id do exercício|
+| `repetitions` | `integer` | **Obrigatório**. Número de repetições|
+| `weight` | `decimal` | **Obrigatório**. Valor do peso|
+| `break_time` | `integer` | **Obrigatório**. Tempo de pausa|
+| `day` | `string` | Obrigatório Valores: SEGUNDA, TERÇA, QUARTA, QUINTA, SEXTA, SÁBADO, DOMINGO|
+| `observations` | `string` | Observações|
+| `time` | `integer` | Tempo|
+
+
+Exemplo de resposta:
+```http
+{
+     "student_id": 16,
+    "exercise_id": 22,
+    "repetitions": 10,
+    "weight": 5,
+    "break_time": 30,
+    "day": "QUARTA",
+    "observations":"...",
+    "time": 3
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `201` | sucesso|
+|  `400` | dados inválido|
+|  `401` | login inválido|
+|  `409` | Conflito de cadastro para treinos no mesmo dia|
+
+##
+
+#### S12 - Listagem de treinos do estudante (Rota Privada)
+
+```http
+  GET /api/students/{id}/workouts
+```
+Não é necessario resquest body
+
+Exemplo de resposta:
+```http
+{
+    "student_id": 16,
+    "student_name": "José Santos",
+    "workouts": {
+        "SEGUNDA": [
+            {
+                "id": 3,
+                "exercise_id": 2,
+                "repetitions": 10,
+                "weight": "5.00",
+                "break_time": 30,
+                "observations": "...",
+                "time": 3,
+                "exercise": {
+                "id": 2,
+                "description": "Supino"
+                }
+            }
+        ],
+        "TERÇA": [],
+        "QUARTA": [],
+        "QUINTA": [],
+        "SEXTA": [],
+        "SÁBADO": [],
+        "DOMINGO": [],
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `200` | sucesso|
+|  `401` | login inválido|
+|  `404` | não encontrado registro com o código informado|
+
+##
+
+#### S13 - Listagem de estudante (Rota Privada)
+
+```http
+  GET /api/students/{id}
+```
+Não é necessario resquest body
+
+Exemplo de resposta:
+```http
+{
+    "id": 16,
+    "name": "José Santos",
+    "email": "jose.santos@gmail.com",
+    "date_birth": "1996-04-29",
+    "cpf": "943.355.969-29",
+    "contact": "+55 11 94374-4141",
+    "address": {
+        "cep": "12345-678",
+        "street": "Rua das flores",
+        "state": "BA",
+        "neighborhood": "Bairro",
+        "city": "Cidade",
+        "number": "1456"
+}
+```
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `200` | sucesso|
+|  `401` | login inválido|
+|  `404` | não encontrado registro com o código informado|
+
+##
+
+#### S13 - Listagem de estudante (Rota Privada)
+
+```http
+  GET /api/students/export
+```
+Não é necessario resquest body
+
+A resposta é retornado em formado de PDF com o treino do estudante.
+
+| Response Status       | Descrição                           |
+|  :--------- | :---------------------------------- |
+|  `200` | sucesso|
+|  `401` | login inválido|
+|  `404` | não encontrado registro com o código informado|
+
+##
