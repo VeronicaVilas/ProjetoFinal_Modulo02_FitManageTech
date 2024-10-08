@@ -21,19 +21,10 @@ class UserController extends Controller
             $request->validate([
                 'name' => 'string|required|max:255',
                 'email' => 'string|required|email|max:255|unique:users',
-                'date_birth' => 'date_format:Y-m-d|required',
-                'cpf' => 'string|required|max:14|regex:/^\d{3}\.\d{3}\.\d{3}-\d{2}$/|unique:users',
-                'password' => 'string|required|min:8|max:32',
-                'plan_id' => 'exists:plans,id',
+                'password' => 'string|required|min:8|max:32'
             ]);
 
             $user = User::create($data);
-            $plan = Plan::find($user->plan_id);
-            $email = $user->email;
-
-            Mail::to($email)
-            ->send(new SendWelcomeEmailToUser($user, $plan));
-
             return $user;
 
         } catch (\Exception $exception) {
